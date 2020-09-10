@@ -115,7 +115,9 @@ int main(void)
   /* USER CODE END 2 */
 
   HAL_TIM_Base_Start_IT(&htim17);
-
+  
+  HAL_InitTick(TICK_INT_PRIORITY);
+  
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)

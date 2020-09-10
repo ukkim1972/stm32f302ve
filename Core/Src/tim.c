@@ -226,7 +226,12 @@ void MX_TIM17_Init(void)
   // htim17.Init.Period = 770-1; // 97.65.8khz 10.24 us
   // htim17.Init.Period = 760-1; // 99.20 khz 10.08 us
   // htim17.Init.Period = 750-1; // 99.20 khz 10.08 us
-  htim17.Init.Period = 755-1; // 100.0 khz 10.00 us
+  // htim17.Init.Period = 755-1; // 100.0 khz 10.00 us
+  // 가변
+  // htim17.Init.Period = 730-1; // 100.0 khz 10.00 us
+  // htim17.Init.Period = 720-1; // 100.0 khz 10.00 us
+
+  htim17.Init.Period = 720-1; // 100.0 khz 10.00 us
 
   htim17.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   // htim17.Init.RepetitionCounter = 0;

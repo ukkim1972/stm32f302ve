@@ -32,6 +32,8 @@ extern "C" {
 #include "stm32f3xx_hal.h"
 #include "sys_gpio.h"
 #include "sys_timerutil.h"
+#include "sys_ultra.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 

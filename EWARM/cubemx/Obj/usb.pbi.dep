@@ -46,5 +46,6 @@ usb.pbi: D:\fwprog\stm32f302ve\Core\Src\usb.c \
   D:\fwprog\stm32f302ve\EWARM/../Drivers/STM32F3xx_HAL_Driver/Inc\stm32f3xx_hal_uart.h \
   D:\fwprog\stm32f302ve\EWARM/../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
   D:\fwprog\stm32f302ve\Core\Src\sys_gpio.h \
+  D:\fwprog\stm32f302ve\EWARM/../Core/Inc\main.h \
   D:\fwprog\stm32f302ve\Core\Src\sys_timerutil.h \
-  D:\fwprog\stm32f302ve\EWARM/../Core/Inc\main.h
+  D:\fwprog\stm32f302ve\Core\Src\sys_ultra.h

@@ -20,66 +20,71 @@
 /* Includes ------------------------------------------------------------------*/
 #include "sys_gpio.h"
 
-// #define HAL_PC09_ON()  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET)
-// #define HAL_PC09_OFF()  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET)
 
-// #define HAL_PC12_ON()  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_RESET)
-// #define HAL_PC12_OFF()  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_12, GPIO_PIN_SET)
-
-// #define HAL_LED0_ON()  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_2, GPIO_PIN_RESET)
-// #define HAL_LED0_OFF()  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_2, GPIO_PIN_SET)
-
-// #define HAL_LED1_ON()  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_RESET)
-// #define HAL_LED1_OFF()  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_SET)
-
-
-// uint8_t U4_Rxbuff[10];
-// /* USER CODE BEGIN 1 */
-// void Com1_RxInt_Enable(void){
-//  	// HAL_UART_Receive_IT(&huart1, (uint8_t *)U4_tBuff, 2);
-//     HAL_UART_Receive_DMA(&huart4, (uint8_t *)U4_Rxbuff, 1);
-// 	//printf("com1");
-// }
-
-// void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-
-//   if(huart->Instance == UART4){
-// 	// osSemaphoreRelease(hUart2RxHandle);
-// 	// Com2_Rx_Con();	// osSemaphoreRelease(hUart2RxHandle);
-//     printf("Hello world ~~ !!");
-//   }
-//   // if(huart->Instance == USART2){
-// 	// osSemaphoreRelease(hUart2RxHandle);
-// 	// // Com2_Rx_Con();	// osSemaphoreRelease(hUart2RxHandle);
-//   // }
-//   // if(huart->Instance == USART1){
-// 	// osSemaphoreRelease(hUart1RxHandle);
-// 	// //	Com1_Rx_Con();
-//   // }
-//   // if(huart->Instance == USART6){
-// 	// osSemaphoreRelease(hUart6RxHandle);
-// 	// // Com6_Rx_Con();
-//   // }
-// }
-void delay_us(int nDelay)
-{
-  while(nDelay--);
-}
-// int fputc(int ch,FILE *f)
+// void delay_us(int nDelay)
 // {
-//   uint8_t temp[1]= {ch};
-//   HAL_UART_Transmit(&huart1,temp,1,2);
-//   return (ch);
+//   while(nDelay--);
 // }
 
 
-short timercnt;
+uint32_t timercnt;
+uint32_t timergroup[10];
+
+
+uint8_t Timer_CheckFlag;
+void checkTimer(void)
+{
+  if(Timer_CheckFlag==0)
+  {
+    sys_10usec_set();
+    Timer_CheckFlag=1;
+  }
+  else{
+    Timer_CheckFlag=0;
+    // sys_10usec_clr();
+    printf(" %d ms \r\n",sys_10usec_get()/100);
+
+  }
+}
+
+void timer_Loop(void)
+{
+  // 10ms
+  if(timergroup[0]>9)
+  {
+    // HAL_LED1_Toggle();
+    // checkTimer();
+    timergroup[0]=0;
+  }
+
+  // 50ms
+  if(timergroup[1]>299)
+  {
+    HAL_LED1_Toggle();
+
+    ultra_tx();
+
+    timergroup[1]=0;
+  }  
+
+  // 1000ms
+  if(timergroup[2]>999)
+  {
+    // checkTimer();
+    timergroup[2]=0;
+  }    
+}
+
 void timer_int(void)
 {
   if(timercnt++>999)
   {
     timercnt=0;
-    // printf("1sec timer~~ !! \r\n");
   }
+  for(int i=0; i<10;i++)
+  {
+    timergroup[i] +=1;
+  }
+  timer_Loop();
 }
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

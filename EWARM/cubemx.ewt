@@ -1222,6 +1222,12 @@
                     <name>$PROJ_DIR$\..\Core\Src\sys_timerutil.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\Core\Src\sys_ultra.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\sys_ultra.h</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Core\Src\tim.c</name>
                 </file>
                 <file>

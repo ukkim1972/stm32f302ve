@@ -345,6 +345,12 @@ void debug_program(uint8_t dataread)
         HAL_LED4_Toggle(); printf("toggle 4 \r\n");      break;
     case '4': 
         HAL_LED5_Toggle(); printf("toggle 5 \r\n");      break;           
+
+    case 't': 
+        ultra_tx(); printf("Ultra tx0 \r\n");      
+        break;
+    case 'r': 
+        HAL_LED5_Toggle(); printf("toggle 5 \r\n");      break;                   
   }
 }
 

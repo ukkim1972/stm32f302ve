@@ -32,6 +32,10 @@ extern "C" {
 void sys_10usec_timer(void);
 void testbug_IO(void);
 
+void sys_10usec_set(void);
+void sys_10usec_clr(void);
+uint32_t sys_10usec_get(void);
+
 #ifdef __cplusplus
 }
 #endif

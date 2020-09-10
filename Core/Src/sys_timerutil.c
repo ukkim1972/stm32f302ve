@@ -21,7 +21,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "sys_timerutil.h"
 
-int usectimer;
+uint32_t usectimer;
+uint8_t usectimer_flag;
+
 
 void testbug_IO(void)
 {
@@ -34,14 +36,28 @@ void testbug_IO(void)
     }
 }
 
+
+void sys_10usec_set(void)
+{
+    usectimer_flag=1;
+    usectimer=0;
+}
+
+void sys_10usec_clr(void)
+{
+    usectimer_flag=0;
+}
+
+uint32_t sys_10usec_get(void)
+{
+    sys_10usec_clr();
+    return usectimer;
+}
+
 void sys_10usec_timer(void)
 {
     // 10 usec time
-    usectimer++;
-    HAL_LED1_Toggle();
-    if(usectimer > 99)
-    {
-        usectimer =0;
-        HAL_LED0_Toggle();
-    }
+    if(usectimer_flag) usectimer++;
 }
+
+

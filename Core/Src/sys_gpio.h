@@ -27,9 +27,8 @@
 extern "C" {
 #endif
 
-/* Includes ------------------------------------------------------------------*/
-// #include<stdio.h>
-// #include "stm32f3xx_hal.h"
+#include "main.h"
+
 #define HAL_PC09_ON()  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_RESET)
 #define HAL_PC09_OFF()  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET)
 
@@ -45,21 +44,14 @@ extern "C" {
 #define HAL_LED0_Toggle() HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_2)
 #define HAL_LED1_Toggle() HAL_GPIO_TogglePin(GPIOF, GPIO_PIN_10)
 
-// #define HAL_LED0_ON()  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_2, GPIO_PIN_RESET)
-// #define HAL_LED0_OFF()  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_2, GPIO_PIN_SET)
-// #define HAL_LED1_ON()  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_RESET)
-// #define HAL_LED1_OFF()  HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_SET)
+
 #define HAL_LED4_Toggle()  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_9)
 #define HAL_LED5_Toggle()  HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_12)
-
 
 #define HAL_LED2_Toggle()  HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_0)
 #define HAL_LED3_Toggle()  HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_1)
 
-
-
-void delay_us(int nDelay);
-// void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
+// void delay_us(int nDelay);
 void timer_int(void);
 
 #ifdef __cplusplus
