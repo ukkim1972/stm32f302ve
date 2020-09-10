@@ -448,9 +448,10 @@ void HAL_GPIO_TogglePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
 
   /* get current Ouput Data Register value */
   odr = GPIOx->ODR;
-
   /* Set selected pins that were at low level, and reset ones that were high */
   GPIOx->BSRR = ((odr & GPIO_Pin) << GPIO_NUMBER) | (~odr & GPIO_Pin);
+
+  // GPIOx->ODR ^= GPIO_Pin;
 }
 
 /**

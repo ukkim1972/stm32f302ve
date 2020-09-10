@@ -1,0 +1,2 @@
+sys_gpio.pbi: D:\fwprog\stm32f302ve\Core\Src\sys_gpio.c \
+  D:\fwprog\stm32f302ve\Core\Src/sys_gpio.h

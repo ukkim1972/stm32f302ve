@@ -9,10 +9,10 @@
   * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                        opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
   */
@@ -312,7 +312,70 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
   }
 }
 
+uint8_t U4_Rxbuff[10];
 /* USER CODE BEGIN 1 */
+void Com1_RxInt_Enable(void){
+ 	// HAL_UART_Receive_IT(&huart1, (uint8_t *)U4_tBuff, 2);
+    HAL_UART_Receive_DMA(&huart4, (uint8_t *)U4_Rxbuff, 1);
+	//printf("com1");
+}
+
+
+// void Com1_Rx_Con(void){
+//   rx1_Buff[0] = U1_Rxbuff[0];
+//   Rx_Data = rx1_Buff[0];
+//   //printf("com1 _Int \r\n");
+//   Com1_RxInt_Enable();
+
+//   //Com1_mpu9250(Rx_Data);
+// }
+
+uint8_t rx4_buff[50];
+
+void debug_program(uint8_t dataread)
+{
+  switch(dataread)
+  {
+    case '1': 
+        HAL_LED2_Toggle(); printf("toggle 1 \r\n");      break;
+    case '2': 
+        HAL_LED3_Toggle(); printf("toggle 2 \r\n");      break;   
+
+    case '3': 
+        HAL_LED4_Toggle(); printf("toggle 4 \r\n");      break;
+    case '4': 
+        HAL_LED5_Toggle(); printf("toggle 5 \r\n");      break;           
+  }
+}
+
+void rx4_Rx_key(void)
+{
+  rx4_buff[0] = U4_Rxbuff[0];
+  debug_program(rx4_buff[0]);
+  Com1_RxInt_Enable();
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+
+  if(huart->Instance == UART4){
+	  // osSemaphoreRelease(hUart2RxHandle);
+	  // Com2_Rx_Con();	// osSemaphoreRelease(hUart2RxHandle);
+    // printf("Hello world ~~ !!");
+    rx4_Rx_key();
+  }
+  // if(huart->Instance == USART2){
+	// osSemaphoreRelease(hUart2RxHandle);
+	// // Com2_Rx_Con();	// osSemaphoreRelease(hUart2RxHandle);
+  // }
+  // if(huart->Instance == USART1){
+	// osSemaphoreRelease(hUart1RxHandle);
+	// //	Com1_Rx_Con();
+  // }
+  // if(huart->Instance == USART6){
+	// osSemaphoreRelease(hUart6RxHandle);
+	// // Com6_Rx_Con();
+  // }
+}
 
 /* USER CODE END 1 */
 
