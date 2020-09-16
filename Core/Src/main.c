@@ -111,18 +111,21 @@ int main(void)
   MX_TIM16_Init();
   MX_TIM17_Init();
   /* USER CODE BEGIN 2 */
-  Com1_RxInt_Enable();
+  //Com1_RxInt_Enable();
+  I2C1_Init();
+  init_SI7006();
   /* USER CODE END 2 */
 
   HAL_TIM_Base_Start_IT(&htim17);
   
   HAL_InitTick(TICK_INT_PRIORITY);
-  
+  //HAL_UART_Transmit(&huart2,"hello\r\n",sizeof("hello\r\n"),1000);
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    // testbug_IO();
+   // testbug_IO();
 
     /* USER CODE END WHILE */
 

@@ -30,7 +30,10 @@ extern "C" {
 #include "main.h"
 
 void ultra_tx(void);
-
+/**start add ysh**/
+uint32_t ditance(void);
+void UT_1_4_ON(void);
+/**end ysh**/
 
 #ifdef __cplusplus
 }
