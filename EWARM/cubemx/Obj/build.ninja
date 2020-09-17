@@ -26,7 +26,9 @@ build gpio.pbi : index gpio.xcl
 build main.pbi : index main.xcl
 build stm32f3xx_hal_msp.pbi : index stm32f3xx_hal_msp.xcl
 build stm32f3xx_it.pbi : index stm32f3xx_it.xcl
+build sys_adc.pbi : index sys_adc.xcl
 build sys_gpio.pbi : index sys_gpio.xcl
+build sys_motor.pbi : index sys_motor.xcl
 build sys_timerutil.pbi : index sys_timerutil.xcl
 build sys_ultra.pbi : index sys_ultra.xcl
 build tim.pbi : index tim.xcl
@@ -56,12 +58,13 @@ build stm32f3xx_hal_uart.pbi : index stm32f3xx_hal_uart.xcl
 build stm32f3xx_hal_uart_ex.pbi : index stm32f3xx_hal_uart_ex.xcl
 build stm32f3xx_ll_usb.pbi : index stm32f3xx_ll_usb.xcl
 build cubemx_part0.pbi : link adc.pbi dma.pbi gpio.pbi main.pbi stm32f3xx_hal_msp.pbi stm32f3xx_it.pbi
-build cubemx_part1.pbi : link sys_gpio.pbi sys_timerutil.pbi sys_ultra.pbi tim.pbi usart.pbi usb.pbi
-build cubemx_part2.pbi : link system_stm32f3xx.pbi stm32f3xx_hal.pbi stm32f3xx_hal_adc.pbi stm32f3xx_hal_adc_ex.pbi stm32f3xx_hal_cortex.pbi stm32f3xx_hal_dma.pbi
-build cubemx_part3.pbi : link stm32f3xx_hal_exti.pbi stm32f3xx_hal_flash.pbi stm32f3xx_hal_flash_ex.pbi stm32f3xx_hal_gpio.pbi stm32f3xx_hal_i2c.pbi stm32f3xx_hal_i2c_ex.pbi
-build cubemx_part4.pbi : link stm32f3xx_hal_pcd.pbi stm32f3xx_hal_pcd_ex.pbi stm32f3xx_hal_pwr.pbi stm32f3xx_hal_pwr_ex.pbi stm32f3xx_hal_rcc.pbi stm32f3xx_hal_rcc_ex.pbi
-build cubemx_part5.pbi : link stm32f3xx_hal_tim.pbi stm32f3xx_hal_tim_ex.pbi stm32f3xx_hal_uart.pbi stm32f3xx_hal_uart_ex.pbi stm32f3xx_ll_usb.pbi
-build cubemx.pbd : link cubemx_part0.pbi cubemx_part1.pbi cubemx_part2.pbi cubemx_part3.pbi cubemx_part4.pbi cubemx_part5.pbi
+build cubemx_part1.pbi : link sys_adc.pbi sys_gpio.pbi sys_motor.pbi sys_timerutil.pbi sys_ultra.pbi tim.pbi
+build cubemx_part2.pbi : link usart.pbi usb.pbi system_stm32f3xx.pbi stm32f3xx_hal.pbi stm32f3xx_hal_adc.pbi stm32f3xx_hal_adc_ex.pbi
+build cubemx_part3.pbi : link stm32f3xx_hal_cortex.pbi stm32f3xx_hal_dma.pbi stm32f3xx_hal_exti.pbi stm32f3xx_hal_flash.pbi stm32f3xx_hal_flash_ex.pbi stm32f3xx_hal_gpio.pbi
+build cubemx_part4.pbi : link stm32f3xx_hal_i2c.pbi stm32f3xx_hal_i2c_ex.pbi stm32f3xx_hal_pcd.pbi stm32f3xx_hal_pcd_ex.pbi stm32f3xx_hal_pwr.pbi stm32f3xx_hal_pwr_ex.pbi
+build cubemx_part5.pbi : link stm32f3xx_hal_rcc.pbi stm32f3xx_hal_rcc_ex.pbi stm32f3xx_hal_tim.pbi stm32f3xx_hal_tim_ex.pbi stm32f3xx_hal_uart.pbi stm32f3xx_hal_uart_ex.pbi
+build cubemx_part6.pbi : link stm32f3xx_ll_usb.pbi
+build cubemx.pbd : link cubemx_part0.pbi cubemx_part1.pbi cubemx_part2.pbi cubemx_part3.pbi cubemx_part4.pbi cubemx_part5.pbi cubemx_part6.pbi
 build cubemx.pbw : browsedata cubemx.pbd
 
 

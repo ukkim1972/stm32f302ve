@@ -43,7 +43,7 @@ void ultra_tx(void)
         HAL_NVIC_DisableIRQ(EXTI4_IRQn);
 
         SYS_UT0_ON();
-        delay_us(75);
+        delay_us(75); // 10usec 
         SYS_UT0_OFF();
 
         utra_check_time();
@@ -58,7 +58,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     if(GPIO_Pin == GPIO_PIN_4){
 
     // printf("dist %d ==> (%d)\r\n",sys_10usec_get(),sys_10usec_get()*17 );
-    printf("dist %d ==> (%d)\r\n",sys_10usec_get(),sys_10usec_get()*17 );    
+    //  printf("dist %d ==> (%d)\r\n",sys_10usec_get(),sys_10usec_get()*17 );    
     HAL_NVIC_DisableIRQ(EXTI4_IRQn);
     }
 }

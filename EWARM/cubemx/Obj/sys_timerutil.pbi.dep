@@ -47,4 +47,6 @@ sys_timerutil.pbi: D:\fwprog\stm32f302ve\Core\Src\sys_timerutil.c \
   D:\fwprog\stm32f302ve\EWARM/../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
   D:\fwprog\stm32f302ve\Core\Src\sys_gpio.h \
   D:\fwprog\stm32f302ve\Core\Src\sys_timerutil.h \
-  D:\fwprog\stm32f302ve\Core\Src\sys_ultra.h
+  D:\fwprog\stm32f302ve\Core\Src\sys_ultra.h \
+  D:\fwprog\stm32f302ve\Core\Src\sys_adc.h \
+  D:\fwprog\stm32f302ve\Core\Src\sys_motor.h

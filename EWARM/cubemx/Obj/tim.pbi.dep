@@ -48,4 +48,6 @@ tim.pbi: D:\fwprog\stm32f302ve\Core\Src\tim.c \
   D:\fwprog\stm32f302ve\Core\Src\sys_gpio.h \
   D:\fwprog\stm32f302ve\EWARM/../Core/Inc\main.h \
   D:\fwprog\stm32f302ve\Core\Src\sys_timerutil.h \
-  D:\fwprog\stm32f302ve\Core\Src\sys_ultra.h
+  D:\fwprog\stm32f302ve\Core\Src\sys_ultra.h \
+  D:\fwprog\stm32f302ve\Core\Src\sys_adc.h \
+  D:\fwprog\stm32f302ve\Core\Src\sys_motor.h

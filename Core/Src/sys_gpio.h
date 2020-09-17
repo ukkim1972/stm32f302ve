@@ -51,9 +51,15 @@ extern "C" {
 #define HAL_LED2_Toggle()  HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_0)
 #define HAL_LED3_Toggle()  HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_1)
 
+#define HAL_LED2_ON()  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_0, GPIO_PIN_SET)
+#define HAL_LED2_OFF()  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_0, GPIO_PIN_RESET)
+
+#define HAL_LED3_ON()  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_1, GPIO_PIN_SET)
+#define HAL_LED3_OFF()  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_1, GPIO_PIN_RESET)
+
 // void delay_us(int nDelay);
 void timer_int(void);
-
+void timer_Loop(void);
 #ifdef __cplusplus
 }
 #endif

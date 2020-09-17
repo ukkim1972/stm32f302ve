@@ -115,13 +115,18 @@ int main(void)
   /* USER CODE END 2 */
 
   HAL_TIM_Base_Start_IT(&htim17);
-  
   HAL_InitTick(TICK_INT_PRIORITY);
   
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  // HAL_LED2_ON();
+  // HAL_LED3_ON();
+
+  printf("main program~~!! \r\n");
+
   while (1)
   {
+    timer_Loop();
     // testbug_IO();
 
     /* USER CODE END WHILE */

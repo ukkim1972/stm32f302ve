@@ -20,6 +20,10 @@ D:\fwprog\stm32f302ve\EWARM/../Drivers/CMSIS/Device/ST/STM32F3xx/Include
 -I
 D:\fwprog\stm32f302ve\EWARM/../Drivers/CMSIS/Include
 -I
+C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\CMSIS\Core\Include
+-I
+C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\CMSIS\DSP\Include
+-I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\inc
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\inc\c
@@ -33,6 +37,10 @@ D:\fwprog\stm32f302ve\Drivers\STM32F3xx_HAL_Driver\Inc\Legacy
 D:\fwprog\stm32f302ve\Drivers\CMSIS\Device\ST\STM32F3xx\Include
 -I
 D:\fwprog\stm32f302ve\Drivers\CMSIS\Include
+-I
+C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\CMSIS\Core\Include
+-I
+C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.3\arm\CMSIS\DSP\Include
 -D__CHAR_BITS__=8
 -D__CHAR_MAX__=0xff
 -D__CHAR_MIN__=0

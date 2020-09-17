@@ -351,6 +351,13 @@ void debug_program(uint8_t dataread)
         break;
     case 'r': 
         HAL_LED5_Toggle(); printf("toggle 5 \r\n");      break;                   
+
+    case 'f': 
+        case_motor('f'); printf("case_motor f \r\n");      break;                   
+    case 'b': 
+        case_motor('b'); printf("case_motor b \r\n");      break;                   
+    case 's': 
+        case_motor('s'); printf("case_motor s \r\n");      break;                                           
   }
 }
 

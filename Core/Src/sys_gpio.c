@@ -63,7 +63,7 @@ void timer_Loop(void)
     HAL_LED1_Toggle();
 
     ultra_tx();
-
+    // HAL_LED2_Toggle();
     timergroup[1]=0;
   }  
 
@@ -71,6 +71,9 @@ void timer_Loop(void)
   if(timergroup[2]>999)
   {
     // checkTimer();
+    Adc_Read_Program();
+//     printf("1 sec timer ~~ !! \r\n");
+    HAL_LED3_Toggle();
     timergroup[2]=0;
   }    
 }
@@ -85,6 +88,5 @@ void timer_int(void)
   {
     timergroup[i] +=1;
   }
-  timer_Loop();
 }
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

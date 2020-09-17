@@ -1216,7 +1216,16 @@
                     <name>$PROJ_DIR$\..\Core\Src\stm32f3xx_it.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\Core\Src\sys_adc.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\Core\Src\sys_gpio.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\sys_motor.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\sys_motor.h</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\sys_timerutil.c</name>
@@ -1239,6 +1248,9 @@
             </group>
             <group>
                 <name>inc</name>
+                <file>
+                    <name>$PROJ_DIR$\..\Core\Src\sys_adc.h</name>
+                </file>
                 <file>
                     <name>$PROJ_DIR$\..\Core\Src\sys_gpio.h</name>
                 </file>

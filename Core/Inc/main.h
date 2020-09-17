@@ -33,6 +33,8 @@ extern "C" {
 #include "sys_gpio.h"
 #include "sys_timerutil.h"
 #include "sys_ultra.h"
+#include "sys_adc.h"
+#include "sys_motor.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
