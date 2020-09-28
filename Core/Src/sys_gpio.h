@@ -54,6 +54,13 @@ extern "C" {
 // void delay_us(int nDelay);
 void timer_int(void);
 
+//add
+void Run_Sonic_Flag();
+void Stop_Sonic_Flag();
+uint8_t Get_Sonic_Flag();
+
+//end
+
 #ifdef __cplusplus
 }
 #endif

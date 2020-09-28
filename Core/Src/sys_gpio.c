@@ -29,6 +29,7 @@
 
 uint32_t timercnt;
 uint32_t timergroup[10];
+uint8_t Sonic_flag=0;
 
 
 uint8_t Timer_CheckFlag;
@@ -46,6 +47,20 @@ void checkTimer(void)
 
   }
 }
+void Run_Sonic_Flag()
+{
+  Sonic_flag=1;
+}
+
+void Stop_Sonic_Flag()
+{
+  Sonic_flag=0;
+}
+
+uint8_t Get_Sonic_Flag()
+{
+  return Sonic_flag;
+}
 
 void timer_Loop(void)
 {
@@ -61,8 +76,8 @@ void timer_Loop(void)
   if(timergroup[1]>299)
   {
     HAL_LED1_Toggle();
-
-    ultra_tx();
+    
+    //ultra_tx();
 
     timergroup[1]=0;
   }  

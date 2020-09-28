@@ -60,6 +60,7 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+
 /* USER CODE END 0 */
 int fputc(int ch,FILE *f)
 {
@@ -120,12 +121,14 @@ int main(void)
   
   HAL_InitTick(TICK_INT_PRIORITY);
   //HAL_UART_Transmit(&huart2,"hello\r\n",sizeof("hello\r\n"),1000);
-
+  printf("start main\r\n");
+  Start_Sonic();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
    // testbug_IO();
+   Logic_Sonic();
 
     /* USER CODE END WHILE */
 

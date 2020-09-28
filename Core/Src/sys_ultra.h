@@ -33,6 +33,16 @@ void ultra_tx(void);
 /**start add ysh**/
 uint32_t ditance(void);
 void UT_1_4_ON(void);
+void print_sonic();
+void sys_all_clr_sonic_flag();
+void sys_clr_sonic_timer(uint8_t sonic_flag);
+void get_sonic_data(uint8_t sonic_number);
+void Start_Sonic();
+void Logic_Sonic();
+void Sonic_Trig_0();
+void Sonic_Trig_1();
+void Sonic_Trig_2();
+void Sonic_Trig_3();
 /**end ysh**/
 
 #ifdef __cplusplus

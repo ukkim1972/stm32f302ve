@@ -36,6 +36,21 @@ void sys_10usec_set(void);
 void sys_10usec_clr(void);
 uint32_t sys_10usec_get(void);
 
+//add ysh
+
+void sys_10usec_set_sonic(void);
+void sys_clr_sonic_flag(uint8_t sonic_flag);
+void sys_10usec_timer_sonic(void);
+uint32_t sys_get_sonic(uint8_t sonic_flag);
+void sys_all_set_sonic();
+void sys_ALL_clr_sonic_timer();
+void sys_start_upcount_timer_sonic();
+void ON_upcount_timer(uint8_t sonic_flag);
+void OFF_upcount_timer(uint8_t sonic_flag);
+
+
+//end  ysh
+
 #ifdef __cplusplus
 }
 #endif

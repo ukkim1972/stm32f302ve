@@ -165,6 +165,26 @@ void MX_TIM15_Init(void)
 /* TIM16 init function */
 void MX_TIM16_Init(void)
 {
+  
+  TIM_MasterConfigTypeDef sMasterConfig;
+
+  htim6.Instance = TIM6;
+  htim6.Init.Prescaler = 5-1;
+  htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim6.Init.Period = 1;
+  htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
+  if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /*
   TIM_OC_InitTypeDef sConfigOC = {0};
   TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
 
@@ -206,7 +226,7 @@ void MX_TIM16_Init(void)
   {
     Error_Handler();
   }
-
+*/
 }
 /* TIM17 init function */
 void MX_TIM17_Init(void)
@@ -504,10 +524,16 @@ void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef* tim_pwmHandle)
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
+  if(htim->Instance == htim6.Instance){
+    //sys_10usec_timer_sonic();
+  }
   if(htim->Instance == TIM17)
   {
       // HAL_LED5_Toggle();
+    //sys_10usec_timer_sonic();
       sys_10usec_timer();
+      sys_start_upcount_timer_sonic();
+  //   sys_10usec_timer_sonic();
   }
 }
 
