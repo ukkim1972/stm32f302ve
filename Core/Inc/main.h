@@ -28,15 +28,20 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
+#include "stm32f3xx_hal.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+/* Includes ------------------------------------------------------------------*/
 #include <stdio.h>
 #include "stm32f3xx_hal.h"
 #include "sys_gpio.h"
 #include "sys_timerutil.h"
 #include "sys_ultra.h"
 #include "i2c.h"
-
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
+#include "sys_motor.h"
+#include "sys_H_T_sensor.h"
+#include "sys_nrf51.h"
 
 /* USER CODE END Includes */
 
@@ -57,7 +62,6 @@ extern "C" {
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
-int fputc(int ch,FILE *f);
 
 /* USER CODE BEGIN EFP */
 

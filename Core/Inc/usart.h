@@ -46,6 +46,7 @@ void MX_USART3_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 void Com1_RxInt_Enable(void);
+void Uart1_Rx_IT_Enable();
 
 /* USER CODE END Prototypes */
 
