@@ -1,12 +1,15 @@
 /* Includes ------------------------------------------------------------------*/
-#include "i2c.h"
+#include "sys_H_T_sensor.h"
 /* USER CODE BEGIN 0 */
-I2C_HandleTypeDef hi2c1;
-
+extern I2C_HandleTypeDef hi2c1;
+extern I2C_HandleTypeDef hi2c2;
+extern UART_HandleTypeDef huart2;
 uint8_t TM_SensorData[2];
 
+uint8_t char_buf[50]; 
 float Humidity = 0;
 float Temperature = 0;
+uint8_t MODE = 0;
 /* USER CODE END 0 */
 
 /*----------------------------------------------------------------------------*/
@@ -32,6 +35,7 @@ void I2C1_Init(void)
   hi2c1.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
   hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
   hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+    
   if (HAL_I2C_Init(&hi2c1) != HAL_OK)
   {
     Error_Handler();
@@ -56,23 +60,27 @@ void I2C1_Init(void)
 
 void init_SI7006()
 {
-  uint8_t MODE = 0;
-  
-  MODE= Humidity_Hold_Master_Mode;
+ 
+  MODE= 0xE5;
   
   if(HAL_I2C_Master_Transmit(&hi2c1, SI7006_ADR, &MODE, 1, 1000) == HAL_OK)
   {
-     printf("SI7006 ok\r\n");
+    // printf("SI7006 ok\r\n");
   }
   else
     printf("SI7006 fail\r\n");
-/*
+
   if(HAL_I2C_Master_Receive(&hi2c1, SI7006_ADR|0x01, TM_SensorData, 2, 1000) == HAL_OK)
   {
 		uint16_t temp = (uint16_t)TM_SensorData[0] << 8;
 		temp = (temp | TM_SensorData[1]);
-		//Humidity =  100 * ((float)temp / 65535.0f);
+		Humidity =  100 * ((float)temp / 65535.0f);
+              // printf("I2C Rx ok\r\n");
+                sprintf((char*)char_buf,"H= %2.2f \r\n", Humidity);
+                printf("H= %2.2f \r\n", Humidity);
+                HAL_UART_Transmit(&huart2,char_buf,sizeof(char_buf),1000);
+                
   }
   HAL_Delay(50);
-  */
+ 
 }

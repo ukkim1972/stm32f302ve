@@ -29,7 +29,6 @@
 
 uint32_t timercnt;
 uint32_t timergroup[10];
-uint8_t Sonic_flag=0;
 
 
 uint8_t Timer_CheckFlag;
@@ -47,20 +46,6 @@ void checkTimer(void)
 
   }
 }
-void Run_Sonic_Flag()
-{
-  Sonic_flag=1;
-}
-
-void Stop_Sonic_Flag()
-{
-  Sonic_flag=0;
-}
-
-uint8_t Get_Sonic_Flag()
-{
-  return Sonic_flag;
-}
 
 void timer_Loop(void)
 {
@@ -76,9 +61,9 @@ void timer_Loop(void)
   if(timergroup[1]>299)
   {
     HAL_LED1_Toggle();
-    
-    //ultra_tx();
 
+    ultra_tx();
+    // HAL_LED2_Toggle();
     timergroup[1]=0;
   }  
 
@@ -86,6 +71,9 @@ void timer_Loop(void)
   if(timergroup[2]>999)
   {
     // checkTimer();
+    //Adc_Read_Program();
+//     printf("1 sec timer ~~ !! \r\n");
+    HAL_LED3_Toggle();
     timergroup[2]=0;
   }    
 }
@@ -100,6 +88,5 @@ void timer_int(void)
   {
     timergroup[i] +=1;
   }
-  timer_Loop();
 }
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

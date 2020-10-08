@@ -199,6 +199,7 @@ void Logic_Sonic()
      Sonic_Trig_3();
    //   print_sonic();
      sonic_trig_flag=0;
+     //printf(" %d %d %d %d\r\n",sonic_data[0],sonic_data[1], sonic_data[2], sonic_data[3] );
      break;
      
    default : 
@@ -212,7 +213,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
   switch(GPIO_Pin)
   {
-    case GPIO_PIN_4: //front sonic
+    case GPIO_PIN_4: //front sonic1
       Echo_Bool_0++;
       if(Echo_Bool_0==1)
       {
@@ -223,10 +224,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
       {
         Echo_Bool_0=0;
         sonic_data[0]=sys_get_sonic(sonic_0);
-        printf("f : %d \r\n",sonic_data[0]);
-        OFF_upcount_timer(sonic_0);
+       printf("F : %d \r\n",sonic_data[0]);
+
+       OFF_upcount_timer(sonic_0);
         sys_clr_sonic_timer(sonic_0);
-      }
+      } 
       
       break;      
         
@@ -241,7 +243,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
       {
         Echo_Bool_1=0;
         sonic_data[1]=sys_get_sonic(sonic_1);
-       // printf("r : %d \r\n",sonic_data[1]);
+       printf("R: %d \r\n",sonic_data[1]);
         OFF_upcount_timer(sonic_1);
         sys_clr_sonic_timer(sonic_1);
       }

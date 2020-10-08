@@ -1,28 +1,35 @@
+/**
+  ******************************************************************************
+  * File Name          : I2C.c
+  * Description        : This file provides code for the configuration
+  *                      of the I2C instances.
+  ******************************************************************************
+  * @attention
+  *
+  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * All rights reserved.</center></h2>
+  *
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                        opensource.org/licenses/BSD-3-Clause
+  *
+  ******************************************************************************
+  */
+
 /* Includes ------------------------------------------------------------------*/
 #include "i2c.h"
+
 /* USER CODE BEGIN 0 */
-I2C_HandleTypeDef hi2c1;
 
-uint8_t TM_SensorData[2];
-
-float Humidity = 0;
-float Temperature = 0;
 /* USER CODE END 0 */
 
-/*----------------------------------------------------------------------------*/
-/* Configure i2c                                                           */
-/*----------------------------------------------------------------------------*/
+I2C_HandleTypeDef hi2c1;
 
-void I2C1_Init(void)
+/* I2C1 init function */
+void MX_I2C1_Init(void)
 {
 
-  /* USER CODE BEGIN I2C1_Init 0 */
-
-  /* USER CODE END I2C1_Init 0 */
-
-  /* USER CODE BEGIN I2C1_Init 1 */
-
-  /* USER CODE END I2C1_Init 1 */
   hi2c1.Instance = I2C1;
   hi2c1.Init.Timing = 0x2000090E;
   hi2c1.Init.OwnAddress1 = 0;
@@ -48,31 +55,76 @@ void I2C1_Init(void)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN I2C1_Init 2 */
-
-  /* USER CODE END I2C1_Init 2 */
 
 }
 
-void init_SI7006()
+void HAL_I2C_MspInit(I2C_HandleTypeDef* i2cHandle)
 {
-  uint8_t MODE = 0;
-  
-  MODE= Humidity_Hold_Master_Mode;
-  
-  if(HAL_I2C_Master_Transmit(&hi2c1, SI7006_ADR, &MODE, 1, 1000) == HAL_OK)
+
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+  if(i2cHandle->Instance==I2C1)
   {
-     printf("SI7006 ok\r\n");
+  /* USER CODE BEGIN I2C1_MspInit 0 */
+
+  /* USER CODE END I2C1_MspInit 0 */
+
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    /**I2C1 GPIO Configuration
+    PB6     ------> I2C1_SCL
+    PB7     ------> I2C1_SDA
+    */
+    GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
+    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+    HAL_I2CEx_EnableFastModePlus(SYSCFG_CFGR1_I2C_PB6_FMP);
+
+    HAL_I2CEx_EnableFastModePlus(SYSCFG_CFGR1_I2C_PB7_FMP);
+
+    /* I2C1 clock enable */
+    __HAL_RCC_I2C1_CLK_ENABLE();
+
+    /* I2C1 interrupt Init */
+    HAL_NVIC_SetPriority(I2C1_EV_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(I2C1_EV_IRQn);
+  /* USER CODE BEGIN I2C1_MspInit 1 */
+
+  /* USER CODE END I2C1_MspInit 1 */
   }
-  else
-    printf("SI7006 fail\r\n");
-/*
-  if(HAL_I2C_Master_Receive(&hi2c1, SI7006_ADR|0x01, TM_SensorData, 2, 1000) == HAL_OK)
-  {
-		uint16_t temp = (uint16_t)TM_SensorData[0] << 8;
-		temp = (temp | TM_SensorData[1]);
-		//Humidity =  100 * ((float)temp / 65535.0f);
-  }
-  HAL_Delay(50);
-  */
 }
+
+void HAL_I2C_MspDeInit(I2C_HandleTypeDef* i2cHandle)
+{
+
+  if(i2cHandle->Instance==I2C1)
+  {
+  /* USER CODE BEGIN I2C1_MspDeInit 0 */
+
+  /* USER CODE END I2C1_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_I2C1_CLK_DISABLE();
+
+    /**I2C1 GPIO Configuration
+    PB6     ------> I2C1_SCL
+    PB7     ------> I2C1_SDA
+    */
+    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_6);
+
+    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_7);
+
+    /* I2C1 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(I2C1_EV_IRQn);
+  /* USER CODE BEGIN I2C1_MspDeInit 1 */
+
+  /* USER CODE END I2C1_MspDeInit 1 */
+  }
+}
+
+/* USER CODE BEGIN 1 */
+
+/* USER CODE END 1 */
+
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

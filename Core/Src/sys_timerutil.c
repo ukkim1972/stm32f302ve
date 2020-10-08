@@ -21,6 +21,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "sys_timerutil.h"
 
+    
+//add ysh
 #define sonic_0 0
 #define sonic_1 1
 #define sonic_2 2
@@ -43,9 +45,10 @@ uint8_t sonic_0_flag;
 uint8_t sonic_1_flag;
 uint8_t sonic_2_flag;
 uint8_t sonic_3_flag;
-
+    
+uint32_t usectimer;
 uint8_t usectimer_flag;
-
+//end ysh
 
 void testbug_IO(void)
 {
@@ -65,6 +68,25 @@ void sys_10usec_set(void)
     usectimer=0;
 }
 
+void sys_10usec_clr(void)
+{
+    usectimer_flag=0;
+}
+
+uint32_t sys_10usec_get(void)
+{
+   // sys_10usec_clr();
+    return usectimer;
+}
+
+void sys_10usec_timer(void)
+{
+    // 10 usec time
+    if(usectimer_flag) usectimer++;
+}
+
+
+//start add ysh code
 
 void sys_all_set_sonic()
 {
@@ -79,7 +101,6 @@ void sys_all_set_sonic()
     sonic_timer_2=0;
     sonic_timer_3=0;
 }
-
 
 
 void sys_set_sonic1_flag(uint8_t sonic_flag)
@@ -103,11 +124,6 @@ void sys_set_sonic1_flag(uint8_t sonic_flag)
     break;
     
   }
-}
-
-void sys_10usec_clr(void)
-{
-    usectimer_flag=0;
 }
 
 void sys_all_clr_sonic_flag()
@@ -141,12 +157,6 @@ void sys_clr_sonic_flag(uint8_t sonic_flag)
   }
 }
 
-uint32_t sys_10usec_get(void)
-{
-    // sys_10usec_clr();
-    return usectimer;
-}
-
 uint32_t sys_get_sonic(uint8_t sonic_flag)
 {
   if(sonic_flag == sonic_0)
@@ -170,11 +180,6 @@ uint32_t sys_get_sonic(uint8_t sonic_flag)
   return 0;
 }
 
-void sys_10usec_timer(void)
-{
-    // 10 usec time
-    if(usectimer_flag) usectimer++;
-}
 
 void sys_10usec_timer_sonic()
 {
@@ -184,6 +189,9 @@ void sys_10usec_timer_sonic()
       sonic_timer_2++;
       sonic_timer_3++;
 }
+
+
+
 void ON_upcount_timer(uint8_t sonic_flag)
 {
   if(sonic_flag ==sonic_0)
@@ -257,5 +265,4 @@ void sys_clr_sonic_timer(uint8_t sonic_flag)
   
 }
 
-
-
+//end ysh code
